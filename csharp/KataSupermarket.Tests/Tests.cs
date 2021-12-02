@@ -18,7 +18,7 @@ namespace KataSupermarket.Tests
             
             //ACT
             register.Scan("apple");
-            var actual = register.checkout();
+            var actual = register.Checkout();
             
             //ASSERT
             Assert.AreEqual(expected, actual);
