@@ -16,6 +16,7 @@ namespace KataSupermarket.Tests
         [TestCase("pineapple", 1, ExpectedResult = 220, Description = "When I checkout 1 pineapple, the system charges 220 cents")]
         [TestCase("pineapple", 2, ExpectedResult = 440, Description = "When I checkout 2 pineapples, the system charges 440 cents")]
         [TestCase("banana", 1, ExpectedResult = 60, Description = "When I checkout 1 banana, the system charges 60 cents")]
+        [TestCase("banana", 2, ExpectedResult = 120, Description = "When I checkout 2 bananas, the system charges 120 cents")]
         public int CheckoutTestCase(string product, int quantity)
         {
             var register = new CashRegister();
