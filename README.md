@@ -62,9 +62,9 @@ so I can speed up the payment process
 * When I checkout 1 pineapple, the system charges 220 cents
 * When I checkout 1 banana, the system charges 60 cents
 
-* When I checkout 2 pear, the system charges 60 cents
-* When I checkout 2 pineapple, the system charges 440 cents
-* When I checkout 2 banana, the system charges 120 cents
+* When I checkout 2 pears, the system charges 60 cents
+* When I checkout 2 pineapples, the system charges 440 cents
+* When I checkout 2 bananas, the system charges 120 cents
 ```
 
 ### The 3<sup>rd</sup> User Story
