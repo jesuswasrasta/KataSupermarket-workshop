@@ -14,6 +14,10 @@ namespace KataSupermarket
             {
                 _total += 30;    
             }
+            if (product.Equals("pineapple"))
+            {
+                _total += 220;    
+            }
         }
         
         public int Checkout()
