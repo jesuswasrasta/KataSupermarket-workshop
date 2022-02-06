@@ -77,5 +77,20 @@ namespace KataSupermarket.Tests
             
             Assert.AreEqual(expected, actual);
         }
+        
+        
+        [TestCase("apple", 1, 50)]
+        [TestCase("pear", 1, 30)]
+        [TestCase("pineapple", 1, 220)]
+        [TestCase("banana", 1, 60)]
+        public void CheckoutTestCase(string product, int quantity, int expected)
+        {
+            var register = new CashRegister();
+            
+            register.Scan(product);
+            var actual = register.Checkout();
+            
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
