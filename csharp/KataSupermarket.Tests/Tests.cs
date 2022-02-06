@@ -17,8 +17,12 @@ namespace KataSupermarket.Tests
         public void CheckoutTestCase(string product, int quantity, int expected)
         {
             var register = new CashRegister();
+
+            for (int i = 0; i < quantity; i++)
+            {
+                register.Scan(product);    
+            }
             
-            register.Scan(product);
             var actual = register.Checkout();
             
             Assert.AreEqual(expected, actual);
