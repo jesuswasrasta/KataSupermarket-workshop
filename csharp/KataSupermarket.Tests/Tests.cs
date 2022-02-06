@@ -52,5 +52,17 @@ namespace KataSupermarket.Tests
             
             Assert.AreEqual(expected, actual);
         }
+
+        [Test(Description = "When I checkout 1 pineapple, the system charges 220 cents")]
+        public void OnePineappleCosts220Cents()
+        {
+            const int expected = 220;
+            var register = new CashRegister();
+            
+            register.Scan("pineapple");
+            var actual = register.Checkout();
+            
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
