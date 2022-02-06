@@ -15,11 +15,11 @@ namespace KataSupermarket.Tests
             //ASSERT
             var expected = 50;
             CashRegister register = new CashRegister();
-            
+
             //ACT
             register.Scan("apple");
             var actual = register.Checkout();
-            
+
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
@@ -30,13 +30,13 @@ namespace KataSupermarket.Tests
             //ASSERT
             var expected = 150;
             CashRegister register = new CashRegister();
-            
+
             //ACT
             register.Scan("apple");
             register.Scan("apple");
             register.Scan("apple");
             var actual = register.Checkout();
-            
+
             //ASSERT
             Assert.AreEqual(expected, actual);
         }
@@ -46,10 +46,10 @@ namespace KataSupermarket.Tests
         {
             const int expected = 30;
             var register = new CashRegister();
-            
+
             register.Scan("pear");
             var actual = register.Checkout();
-            
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -58,8 +58,21 @@ namespace KataSupermarket.Tests
         {
             const int expected = 220;
             var register = new CashRegister();
-            
+
             register.Scan("pineapple");
+            var actual = register.Checkout();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+                
+        [Test(Description = "When I checkout 1 banana, the system charges 60 cents")]
+        public void OneBananaCosts60Cents()
+        {
+            const int expected = 60;
+            var register = new CashRegister();
+            
+            register.Scan("banana");
             var actual = register.Checkout();
             
             Assert.AreEqual(expected, actual);
