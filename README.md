@@ -20,7 +20,7 @@ In fact the current prices are:
 
 
 Our checkout accepts items in any order, so that if we scan a pear, a pineapple, 
-and another pear, we’ll recognize the two pear's and price them at 45 cents 
+and another pear, we’ll recognize the two pears and price them at 45 cents 
 (for a total price so far of 265 cents).   
 Because the pricing changes frequently, we pass in a set of pricing rules 
 each time we start handling a checkout transaction.  
