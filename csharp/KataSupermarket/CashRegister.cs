@@ -2,7 +2,6 @@ namespace KataSupermarket
 {
     public class CashRegister
     {
-        private int _total = 0;
         private int _apples;
         private int _pears;
         private int _pineapples;
@@ -30,34 +29,35 @@ namespace KataSupermarket
         
         public int Checkout()
         {
+            int total = 0;
             while (_apples >= 3)
             {
                 _apples -= 3;
-                _total += 130;
+                total += 130;
             }
             while (_pears >= 2)
             {
                 _pears -= 2;
-                _total += 45;
+                total += 45;
             }
             for (int i = 0; i < _apples; i++)
             {
-                _total += 50;
+                total += 50;
             }
             for (int i = 0; i < _pears; i++)
             {
-                _total += 30;
+                total += 30;
             }
             for (int i = 0; i < _pineapples; i++)
             {
-                _total += 220;
+                total += 220;
             }
             for (int i = 0; i < _bananas; i++)
             {
-                _total += 60;
+                total += 60;
             }
             
-            return _total;
+            return total;
         }
     }
 }
