@@ -5,6 +5,8 @@ namespace KataSupermarket
         private int _total = 0;
         private int _apples;
         private int _pears;
+        private int _pineapples;
+        private int _bananas;
 
         public void Scan(string product)
         {
@@ -18,11 +20,11 @@ namespace KataSupermarket
             }
             if (product.Equals("pineapple"))
             {
-                _total += 220;    
+                _pineapples += 1;    
             }
             if (product.Equals("banana"))
             {
-                _total += 60;    
+                _bananas += 1;    
             }
         }
         
@@ -45,6 +47,14 @@ namespace KataSupermarket
             for (int i = 0; i < _pears; i++)
             {
                 _total += 30;
+            }
+            for (int i = 0; i < _pineapples; i++)
+            {
+                _total += 220;
+            }
+            for (int i = 0; i < _bananas; i++)
+            {
+                _total += 60;
             }
             
             return _total;
