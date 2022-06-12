@@ -149,15 +149,16 @@ Background:
 * When I close the checkout, a fiscal receipt like this is printed to the console:
 ```
 
-  |Item       | Price           |
-  |-----------|-----------------|
-  | apple     | 50x3=~150~ 130  |
-  | pear      | 30x2=~60~ 45    |
-  | pineapple | 220x2=440       |
-  |           |                 |
-  | TOTAL     | 615             |
-  |           |                 |
-  | Goodbye!  |                 |
+|Item       | Price           |
+|-----------|-----------------|
+| apple     | 50x3=~150~ 130  |
+| pear      | 30x2=~60~ 45    |
+| pineapple | 220x2=440       |
+|           |                 |
+| TOTAL     | 615             |
+|           |                 |
+| Goodbye!  |                 |
+
 
 
 ```
@@ -172,17 +173,17 @@ Background:
 * When I close the checkout, a fiscal receipt like this is printed to the console:
 ```
 
-  |Item       | Price           |
-  |-----------|-----------------|
-  | apple     | 50x3=~150~ 130  |
-  | pear      | 30x2=~60~ 45    |
-  | pineapple | 220x2=440       |
-  | ~pear~    | ~30x2=60 45~    |
-  | pear      | 30x1=30         |
-  |           |                 |
-  | TOTAL     | 600             |
-  |           |                 |
-  | Goodbye!  |                 |
+|Item       | Price           |
+|-----------|-----------------|
+| apple     | 50x3=~150~ 130  |
+| pear      | 30x2=~60~ 45    |
+| pineapple | 220x2=440       |
+| ~pear~    | ~30x2=60 45~    |
+| pear      | 30x1=30         |
+|           |                 |
+| TOTAL     | 600             |
+|           |                 |
+| Goodbye!  |                 |
 
 
 
@@ -201,15 +202,14 @@ Background:
 * I close the transaction, then a fiscal receipt like this is printed to the console:
 ```
 
-  |Item       | Price           |
-  |-----------|-----------------|
-  | pear      | 30              |
-  |           |                 |
-  | TOTAL     | 30              |
-  | --------- | --------------- |
-  | Received  | 100             |
-  | Withdraw  | 70              |
-  |           |                 |
-  | Goodbye!  |                 |
-
+|Item       | Price           |
+|-----------|-----------------|
+| pear      | 30              |
+|           |                 |
+| TOTAL     | 30              |
+| --------- | --------------- |
+| Received  | 100             |
+| Withdraw  | 70              |
+|           |                 |
+| Goodbye!  |                 |
 
