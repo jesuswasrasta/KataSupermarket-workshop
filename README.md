@@ -11,12 +11,12 @@ while some items are multipriced: buy _x_ of them, and they’ll cost you _n_ ce
 
 In fact the current prices are:  
 
-|Item       | Unit Price  | Special Price |   
+|Item       | Unit Price  | Special Price |
 |-----------|-------------|---------------|
-| apple     | 50          | 3 for 130     |   
-| pear      | 30          | 2 for 45      |   
-| pineapple | 220         |               |   
-| banana    | 60          |               |   
+| apple     | 50          | 3 for 130     |
+| pear      | 30          | 2 for 45      |
+| pineapple | 220         |               |
+| banana    | 60          |               |
 
 
 Our checkout accepts items in any order, so that if we scan a pear, a pineapple, 
@@ -82,6 +82,7 @@ so my customers will pay less for multiple items purchase
 * When I checkout 2 pineapple, the system charges 440 cents, as there are no offers for pineapples
 ```
 
+---
 ### Add some more extra feature
 
 Now, we think that having more items and offers will boost our earnings; so we are asking to:
@@ -96,7 +97,132 @@ Now, we think that having more items and offers will boost our earnings; so we a
   * 3 x 2 offers (pay 2, get 3)
   * combo offers (eg. buy 3 apple and you will obtain an additional pear)
   
- ...[to be continued]...
+* implements the cash payment system
+* implements the credit card payment system
+  * the goverment stopped producing 1 and 2 cents coins; every bill/invoice has to be rounded to the nearest multiple of 5, even if paid with debet/credit card
+  * we have to manage the cancellation of a product, because it is damaged or the customer decides to return it (e.g. it costs too much and he didn't realize it)
+
+...[to be continued]...
+
+PS: feel free to propose next change request to implement! 😀
+
+---
+### An example of the Payment System User Story
+
+```
+As a cashier, 
+I want to print the fiscal receipt for sold items
+so I can collect money from my customers 
+```
+#### Acceptance Criteria
+
+```
+Scenario 1: customer buys items with and without applied offers
+
+Background: 
+* I checked out 3 apples for 130 cents instead of 150
+* I checked out 2 pears for 45 cents instead of 60
+* I checked out 2 pineapple for 440 cents (no offers for pineapples)
+
+* When I close the checkout, a fiscal receipt like this is printed to the console:
+```
+
+| Item      | Price            |
+|-----------|------------------|
+| apple     | 50x3=~~150~~ 130 |
+| pear      | 30x2=~~60~~ 45   |
+| pineapple | 220x2=440        |
+|           |                  |
+| TOTAL     | 615              |
+|           |                  |
+| Goodbye!  |                  |
 
 
+```
+Scenario 2: an item is damaged then subtracted from the list
+
+Background: 
+* I scan 3 apples for 130 cents instead of 150
+* I scan 2 pears for 45 cents instead of 60
+* I scan 2 pineapple for 440 cents (no offers for pineapples)
+* I refund 1 pear
+
+* When I checkout, a fiscal receipt like this is printed to the console:
+(NB: refund to be printed at the end of the receipt)
+```
+
+| Item      | Price            |
+|-----------|------------------|
+| apple     | 50x3=~~150~~ 130 |
+| pear      | 30x2=~~60~~ 45   |
+| pineapple | 220x2=440        |
+| ~~pear~~  | ~~30x2=60 45~~   |
+| pear      | 30x1=30          |
+|           |                  |
+| TOTAL     | 600              |
+|           |                  |
+| Goodbye!  |                  |
+
+```
+Scenario 3: automatic calculation of remainder
+
+Background: 
+* I checked out 1 pear for 30 cents
+
+* I close the checkout
+* I tell to the customer the total amount
+* She gives me a 1 dollar bill
+* I enter the received amout in the cash register
+
+* I close the transaction, then a fiscal receipt like this is printed to the console:
+```
+
+| Item      | Price           |
+|-----------|-----------------|
+| pear      | 30              |
+|           |                 |
+| TOTAL     | 30              |
+| --------- | --------------- |
+| Received  | 100             |
+| Withdraw  | 70              |
+|           |                 |
+| Goodbye!  |                 |
+
+---
+### An example of the Fidelity card User Story
+
+```
+As a cashier, 
+I want to give a loyalty card that applies an additional 10% discount to some "fidelity products"
+so I can build up the loyalty of my customers
+```
+#### Acceptance Criteria
+
+```
+Scenario 1: Customer with fidelity card
+
+Background: 
+* Apple is a "fidelity product"
+* Customer has fidelity card number 123456 (additional 10% discount)
+* There's an offer for apples: 3 apples for 130 cents instead of 150
+* There's an offer for pears: 2 pears for 45 cents instead of 60
+
+* I checked out 3 apples
+* I checked out 2 pears
+* I checked out 2 pineapple
+
+* When I close the checkout, a fiscal receipt like this is printed to the console:
+```
+
+| Item      | Price                                                       |
+|-----------|-------------------------------------------------------------|
+| apple     | Base price: 50x3=~150~; Offer: ~130~; Fidelity: 130-10%=117 |
+| pear      | Base price: 30x2=~60~; Offer: 45                            |
+| pineapple | Base price: 220x2=440                                       |
+|           |                                                             |
+| TOTAL     | **602**                                                     |
+|           |                                                             |
+|           | Fidelity card: 123456                                       |
+|           |                                                             |
+| Goodbye!  |                                                             |
 
