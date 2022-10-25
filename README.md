@@ -127,41 +127,41 @@ Background:
 * When I close the checkout, a fiscal receipt like this is printed to the console:
 ```
 
-|Item       | Price           |
-|-----------|-----------------|
-| apple     | 50x3=~150~ 130  |
-| pear      | 30x2=~60~ 45    |
-| pineapple | 220x2=440       |
-|           |                 |
-| TOTAL     | 615             |
-|           |                 |
-| Goodbye!  |                 |
+| Item      | Price            |
+|-----------|------------------|
+| apple     | 50x3=~~150~~ 130 |
+| pear      | 30x2=~~60~~ 45   |
+| pineapple | 220x2=440        |
+|           |                  |
+| TOTAL     | 615              |
+|           |                  |
+| Goodbye!  |                  |
 
 
 ```
-Scenario 2: an item is damaged then subtracted form the list
+Scenario 2: an item is damaged then subtracted from the list
 
 Background: 
-* I checked out 3 apples for 130 cents instead of 150
-* I checked out 2 pears for 45 cents instead of 60
-* I checked out 2 pineapple for 440 cents (no offers for pineapples)
+* I scan 3 apples for 130 cents instead of 150
+* I scan 2 pears for 45 cents instead of 60
+* I scan 2 pineapple for 440 cents (no offers for pineapples)
 * I refund 1 pear
 
-* When I close the checkout, a fiscal receipt like this is printed to the console:
+* When I checkout, a fiscal receipt like this is printed to the console:
+(NB: refund to be printed at the end of the receipt)
 ```
 
-|Item       | Price           |
-|-----------|-----------------|
-| apple     | 50x3=~150~ 130  |
-| pear      | 30x2=~60~ 45    |
-| pineapple | 220x2=440       |
-| ~pear~    | ~30x2=60 45~    |
-| pear      | 30x1=30         |
-|           |                 |
-| TOTAL     | 600             |
-|           |                 |
-| Goodbye!  |                 |
-
+| Item      | Price            |
+|-----------|------------------|
+| apple     | 50x3=~~150~~ 130 |
+| pear      | 30x2=~~60~~ 45   |
+| pineapple | 220x2=440        |
+| ~~pear~~  | ~~30x2=60 45~~   |
+| pear      | 30x1=30          |
+|           |                  |
+| TOTAL     | 600              |
+|           |                  |
+| Goodbye!  |                  |
 
 ```
 Scenario 3: automatic calculation of remainder
@@ -177,7 +177,7 @@ Background:
 * I close the transaction, then a fiscal receipt like this is printed to the console:
 ```
 
-|Item       | Price           |
+| Item      | Price           |
 |-----------|-----------------|
 | pear      | 30              |
 |           |                 |
@@ -214,7 +214,7 @@ Background:
 * When I close the checkout, a fiscal receipt like this is printed to the console:
 ```
 
-|Item       | Price                                                       |
+| Item      | Price                                                       |
 |-----------|-------------------------------------------------------------|
 | apple     | Base price: 50x3=~150~; Offer: ~130~; Fidelity: 130-10%=117 |
 | pear      | Base price: 30x2=~60~; Offer: 45                            |
