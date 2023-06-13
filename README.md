@@ -1,15 +1,15 @@
 # Kata Supermarket
 
-[Supermarket Kata](http://codekata.com/kata/kata01-supermarket-pricing/).  
+[Supermarket Kata](http://codekata.com/kata/kata01-supermarket-pricing/).
 
 ## The kata
 
-In Jet Supermarket we have a checkout system that only can do one kind of offers, 
-based on quantities of the same item (eg. 1 apple for 50 cents, 3 apples for 1.20 dollars).  
-A the moment items are priced individually in cents (e.g. 1 apple costs 50 cents), 
-while some items are multipriced: buy _x_ of them, and they’ll cost you _n_ cents.  
+In Jet Supermarket we have a checkout system that only can do one kind of offers,
+based on quantities of the same item (e.g. 1 apple for 50 cents, 3 apples for 1.30 dollars).  
+At the moment items are priced individually in cents (e.g. 1 apple costs 50 cents),
+while some items are multi-priced: buy _x_ of them, and they’ll cost you _n_ cents.
 
-In fact the current prices are:  
+In fact the current prices are:
 
 |Item       | Unit Price  | Special Price |
 |-----------|-------------|---------------|
@@ -19,11 +19,11 @@ In fact the current prices are:
 | banana    | 60          |               |
 
 
-Our checkout accepts items in any order, so that if we scan a pear, a pineapple, 
-and another pear, we’ll recognize the two pear's and price them at 45 cents 
+Our checkout accepts items in any order, so that if we scan a pear, a pineapple,
+and another pear, we’ll recognize the two pear's and price them at 45 cents
 (for a total price so far of 265 cents).   
-Because the pricing changes frequently, we pass in a set of pricing rules 
-each time we start handling a checkout transaction.  
+Because the pricing changes frequently, we pass in a set of pricing rules
+each time we start handling a checkout transaction.
 
 ## Start small
 
@@ -82,10 +82,128 @@ so my customers will pay less for multiple items purchase
 * When I checkout 2 pineapple, the system charges 440 cents, as there are no offers for pineapples
 ```
 
+### The 4<sup>th</sup> User Story
+
+```
+As a cashier,
+I want to add a "take 3 pay 2 offer" kind for items
+so my customers will pay less for multiple items purchase
+```
+#### Acceptance Criteria
+
+```
+For the first step, I only want to apply this offers for oranges:
+* When I checkout 3 orange, the system charges 90 cents instead of 135
+* When I checkout 4 orange, the system charges 135 cents instead of 180
+* When I checkout 6 orange, the system charges 180 cents instead of 270
+```
+### The 5<sup>th</sup> User Story: Fruit Salad offer
+
+```
+As a cashier, 
+I want to specify this offer: 4 apples, 2 pears, 2 bananas and 1 pineapple for 500
+so my customers can make delicious fruit salads :)
+```
+#### Acceptance Criteria
+
+```
+* When I checkout EXACTLY 4 apples, 2 pears, 2 bananas and 1 pineapple, the system charges 500
+* All other offers and base prices remains in place
+* When I checkout 8 apples, 4 pears, 4 bananas and 2 pineapple, the system charges 1000
+* When I checkout 5 apples, 3 pears, 3 bananas and 2 pineapple, the system charges 860 (500+50+30+220+60)
+* When I checkout 7 apples, 2 pears, 2 bananas and 1 pineapple, the system charges 630 (500+130)
+```
 ---
+### User Story: Payments, show change on display
+
+```
+As a cashier, 
+I want the cash register to calcultate the change  
+so I can avoid silly mistakes with my customers during the payments 
+```
+#### Acceptance Criteria
+
+```
+* I want to tell the cash register the amount of cash my customers gives to me, so it can calculate the change.
+  * E.g: If customer buys 1 apple (50 cents) and gives me a 1$ dollar note, the cash register will tell **on the display** 
+    |   Total: 50  |
+    |    Cash: 100 |
+    |  Change: 50  |
+```
+---
+### User Story: Payment by Credit Card
+
+```
+As a cashier, 
+I want to let my customer pay by credit card 
+```
+#### Acceptance Criteria
+
+```
+* E.g: If customer buys 1 apple (50 cents), on checkout with a valid credit card, the cash register will show on the display: 
+    |   0 - Transaction completed successfully |
+```
+#### Implementation notes
+In this scenario, we have an external service that allows the supermarket to pay by credit card.  
+This is an external service, we don't own it.  
+Fortunately, there is an interface that allows us to know how to call it:
+
+~~~csharp
+namespace KataSupermarket;
+/// <summary 
+/// Credit Card Payment Service
+/// </summary>
+public interface IPaymentService
+{
+   /// <summary>   
+   /// A cash register must connect to the service before accepting the payment.
+   /// </summary>   
+   /// <param name="username">The username assigned to the supermarket</param>    
+   /// <param name="password">The password assigned to the supermarket</param>    
+   /// <returns>Result</returns> 
+   /// <example>0 - Connection completed successfully.</example>    
+   /// <example>10 - Invalid username or password.</example>    
+   /// <example>90 - Connection failed. Please try again later.</example>    
+   Result Connect(string username, string password);
+   /// <summary>     
+   /// This method allows the supermarket to charge the <param name="creditCardNumber"></param> with the specified <param name="totalToPay"></param>.
+   /// </summary>    
+   /// <param name="creditCardNumber"></param>    
+   /// <param name="totalToPay"></param>    
+   /// <returns>Result</returns>    
+   /// <example>0 - Transaction completed successfully.</example>    
+   /// <example>1 - User not connected.</example>    
+   /// <example>10 - Insufficient funds.</example>    
+   /// <example>20 - Expired credit card.</example>    
+   /// <example>30 - Lost or stolen credit card.</example>    
+   /// <example>40 - Unusual activity.</example>    
+   /// <example>90 - Connection failed. Please try again later.
+   ///</example>    
+   Result AcceptPayment(string creditCardNumber, int totalToPay);
+}
+/// <summary>
+/// The result of an interaction with the Payment Service 
+/// </summary>
+public class Result
+{
+   /// <summary>    
+   /// A code that identifies the interaction result.
+   /// </summary>    
+   public int StatusCode { get; }
+   /// <summary>      A human readable message.
+   /// </summary>    
+   public string Message { get; }
+    
+   public Result(int statusCode, string message)
+   {
+        StatusCode = statusCode;
+        Message = message;
+   }
+}
+~~~
 ### Add some more extra feature
 
-Now, we think that having more items and offers will boost our earnings; so we are asking to:
+Now, the supermarket manager thinks that having more items and offers will boost his earnings; so he wants to:
 * add these items:
   * mango -> 155 cents
   * coconut -> 233 cents
@@ -95,11 +213,11 @@ Now, we think that having more items and offers will boost our earnings; so we a
 
 * implement a new offers system that lets us apply new pricing rules:
   * 3 x 2 offers (pay 2, get 3)
-  * combo offers (eg. buy 3 apple and you will obtain an additional pear)
-  
+  * combo offers (e.g. buy 3 apple, and you will obtain an additional pear)
+
 * implements the cash payment system
 * implements the credit card payment system
-  * the goverment stopped producing 1 and 2 cents coins; every bill/invoice has to be rounded to the nearest multiple of 5, even if paid with debet/credit card
+  * the government stopped producing 1 and 2 cents coins; every bill/invoice has to be rounded to the nearest multiple of 5, even if paid with debet/credit card
   * we have to manage the cancellation of a product, because it is damaged or the customer decides to return it (e.g. it costs too much and he didn't realize it)
 
 ...[to be continued]...
@@ -127,41 +245,41 @@ Background:
 * When I close the checkout, a fiscal receipt like this is printed to the console:
 ```
 
-| Item      | Price            |
-|-----------|------------------|
-| apple     | 50x3=~~150~~ 130 |
-| pear      | 30x2=~~60~~ 45   |
-| pineapple | 220x2=440        |
-|           |                  |
-| TOTAL     | 615              |
-|           |                  |
-| Goodbye!  |                  |
+|Item       | Price           |
+|-----------|-----------------|
+| apple     | 50x3=~150~ 130  |
+| pear      | 30x2=~60~ 45    |
+| pineapple | 220x2=440       |
+|           |                 |
+| TOTAL     | 615             |
+|           |                 |
+| Goodbye!  |                 |
 
 
 ```
-Scenario 2: an item is damaged then subtracted from the list
+Scenario 2: an item is damaged then subtracted form the list
 
 Background: 
-* I scan 3 apples for 130 cents instead of 150
-* I scan 2 pears for 45 cents instead of 60
-* I scan 2 pineapple for 440 cents (no offers for pineapples)
+* I checked out 3 apples for 130 cents instead of 150
+* I checked out 2 pears for 45 cents instead of 60
+* I checked out 2 pineapple for 440 cents (no offers for pineapples)
 * I refund 1 pear
 
-* When I checkout, a fiscal receipt like this is printed to the console:
-(NB: refund to be printed at the end of the receipt)
+* When I close the checkout, a fiscal receipt like this is printed to the console:
 ```
 
-| Item      | Price            |
-|-----------|------------------|
-| apple     | 50x3=~~150~~ 130 |
-| pear      | 30x2=~~60~~ 45   |
-| pineapple | 220x2=440        |
-| ~~pear~~  | ~~30x2=60 45~~   |
-| pear      | 30x1=30          |
-|           |                  |
-| TOTAL     | 600              |
-|           |                  |
-| Goodbye!  |                  |
+|Item       | Price           |
+|-----------|-----------------|
+| apple     | 50x3=~150~ 130  |
+| pear      | 30x2=~60~ 45    |
+| pineapple | 220x2=440       |
+| ~pear~    | ~30x2=60 45~    |
+| pear      | 30x1=30         |
+|           |                 |
+| TOTAL     | 600             |
+|           |                 |
+| Goodbye!  |                 |
+
 
 ```
 Scenario 3: automatic calculation of remainder
@@ -177,7 +295,7 @@ Background:
 * I close the transaction, then a fiscal receipt like this is printed to the console:
 ```
 
-| Item      | Price           |
+|Item       | Price           |
 |-----------|-----------------|
 | pear      | 30              |
 |           |                 |
@@ -214,7 +332,10 @@ Background:
 * When I close the checkout, a fiscal receipt like this is printed to the console:
 ```
 
-| Item      | Price                                                       |
+
+
+
+|Item       | Price                                                       |
 |-----------|-------------------------------------------------------------|
 | apple     | Base price: 50x3=~150~; Offer: ~130~; Fidelity: 130-10%=117 |
 | pear      | Base price: 30x2=~60~; Offer: 45                            |
@@ -225,4 +346,5 @@ Background:
 |           | Fidelity card: 123456                                       |
 |           |                                                             |
 | Goodbye!  |                                                             |
+
 
