@@ -174,22 +174,22 @@ Here some inspiration :)
 Let's add some payments features.  
 
 ```markdown
-As a cashier, 
-I want the cash register to show the total amount on the display while checking-out,  
-so I can tell my customers how much cash they have to pay 
+As a cashier,
+I want a display facing the customer (let's call it 'customer-display')
+so that (s)he can see what the total to be paid is
 ```
 
 #### Acceptance Criteria
 
 ```markdown
-* E.g: If customer buys 1 apple (50 cents), on checkout the cash register will tell on the display 
+* E.g: If customer buys 1 apple (50 cents), on checkout the cash register will tell on the customer-display 
     |   Total: 50  |
 ```
 
 #### Implementation notes
-In this scenario, we have just discovered there is a display attached to the cash register.  
-The display is a pluggable external device.  
-For the sake of simplicity, in this exercise the display prints its messages to the console.  
+In this scenario, we have just discovered there is a customer-display we can attach to the cash register.  
+The customer-display is a pluggable external device.  
+For the sake of simplicity, in this exercise the customer-display prints its messages to the console.  
 
 ---
 
