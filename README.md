@@ -187,7 +187,7 @@ so that (s)he can see what the total to be paid is
 ```
 
 #### Implementation notes
-In this scenario, we have just discovered there is a customer-display we can attach to the cash register.  
+In this scenario, we have just discovered there is a `customer-display` we can attach to the cash register.  
 The customer-display is a pluggable external device.  
 For the sake of simplicity, in this exercise the customer-display prints its messages to the console.  
 
@@ -197,7 +197,7 @@ For the sake of simplicity, in this exercise the customer-display prints its mes
 
 ```markdown
 As a cashier, 
-I want the cash register to calculate the change  
+I want the cash register to calculate and show me the change  
 so I can avoid silly mistakes with my customers during the payments 
 ```
 
@@ -205,11 +205,16 @@ so I can avoid silly mistakes with my customers during the payments
 
 ```markdown
 * I want to tell the cash register the amount of cash my customers gives to me, so it can calculate the change.
-  * E.g: If customer buys 1 apple (50 cents) and gives me a 1$ dollar note, the cash register will tell **on the display** 
+  * E.g: If customer buys 1 apple (50 cents) and gives me a 1$ dollar note, the cash register will tell **on the cashier-display** 
     |   Total: 50  |
     |    Cash: 100 |
     |  Change: 50  |
 ```
+
+#### Implementation notes
+In this scenario, we have just discovered there is a `cashier-display`, too.  
+The cashier-display is a pluggable external device.  
+For the sake of simplicity, in this exercise the cashier-display prints its messages to the console.  
 
 ---
 
