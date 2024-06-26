@@ -464,7 +464,6 @@ Now, the supermarket manager thinks that having more items and offers will boost
 ...[to be continued]...
 
 PS: feel free to propose next change request to implement! 😀
->>>>>>> bd85868 (Update README.md)
 
 * we have to manage the cancellation of a product, because it is damaged or the customer decides to return it (e.g., it costs too much and he didn't realize it)
 
