@@ -60,7 +60,7 @@ each time we start handling a checkout transaction.
 ## Start small
 
 Start making the system able to check an individual price: for now, the cashier will calculate discounts by hand.  
-Then start implementing offers.  
+Then, implement offers.  
 
 ### The 1<sup>st</sup> User Story
 
@@ -68,15 +68,15 @@ Let's start with apples.
 
 ```markdown
 As a cashier, 
-I want a basic checkout system
+I want a basic checkout system,
 so I can let my customers pay for apples
 ```
 
 #### Acceptance Criteria
 
 ```markdown
-* When I checkout an apple, the system charges 50 cents
-* When I checkout 3 apples, the system charges 150 cents
+* When I check out an apple, the system charges 50 cents
+* When I check out 3 apples, the system charges 150 cents
 ```
 
 ---
@@ -88,20 +88,20 @@ No offers implemented, yet.
 
 ```markdown
 As a cashier, 
-I want to add pear, pineapple and banana to the checkout system
+I want to add pear, pineapple and banana to the checkout system,
 so I can speed up the payment process
 ```
 
 #### Acceptance Criteria
 
 ```markdown
-* When I checkout 1 pear, the system charges 30 cents
-* When I checkout 1 pineapple, the system charges 220 cents
-* When I checkout 1 banana, the system charges 60 cents
+* When I check out 1 pear, the system charges 30 cents
+* When I check out 1 pineapple, the system charges 220 cents
+* When I check out 1 banana, the system charges 60 cents
 
-* When I checkout 2 pears, the system charges 60 cents
-* When I checkout 2 pineapples, the system charges 440 cents
-* When I checkout 2 bananas, the system charges 120 cents
+* When I check out 2 pears, the system charges 60 cents
+* When I check out 2 pineapples, the system charges 440 cents
+* When I check out 2 bananas, the system charges 120 cents
 ```
 
 ---
@@ -112,16 +112,16 @@ Time to implement offers!
 
 ```markdown
 As a cashier, 
-I want to specify offers for items
+I want to specify offers for items,
 so my customers will pay less for multiple items purchase
 ```
 
 #### Acceptance Criteria
 
 ```markdown
-* When I checkout 3 apples, the system charges 130 cents instead of 150
-* When I checkout 2 pears, the system charges 45 cents instead of 60
-* When I checkout 2 pineapples, the system charges 440 cents, as there are no offers for pineapples
+* When I check out 3 apples, the system charges 130 cents instead of 150
+* When I check out 2 pears, the system charges 45 cents instead of 60
+* When I check out 2 pineapples, the system charges 440 cents, as there are no offers for pineapples
 ```
 
 ### The 4<sup>th</sup> User Story
@@ -129,7 +129,7 @@ Take 3 pay offer.
 
 ```markdown
 As a cashier,
-I want to add a "take 3 pay 2 offer" kind for items
+I want to add a "take 3 pay 2 offer" kind for items,
 so my customers will pay less for multiple items purchase
 ```
 
@@ -137,10 +137,10 @@ so my customers will pay less for multiple items purchase
 
 ```markdown
 For the first step, I only want to apply this offers for oranges:
-* When I checkout 1 orange, the system charges 45
-* When I checkout 3 oranges, the system charges 90 cents instead of 135
-* When I checkout 4 oranges, the system charges 135 cents instead of 180
-* When I checkout 6 oranges, the system charges 180 cents instead of 270
+* When I check out 1 orange, the system charges 45
+* When I check out 3 oranges, the system charges 90 cents instead of 135
+* When I check out 4 oranges, the system charges 135 cents instead of 180
+* When I check out 6 oranges, the system charges 180 cents instead of 270
 ```
 
 ---
@@ -149,18 +149,18 @@ Combo offers.
 
 ```markdown
 As a cashier, 
-I want to specify this offer: 4 apples, 2 pears, 2 bananas and 1 pineapple for 500
+I want to specify this offer: 4 apples, 2 pears, 2 bananas and 1 pineapple for 500,
 so my customers can make delicious fruit salads :)
 ```
 
 #### Acceptance Criteria
 
 ```markdown
-* When I checkout EXACTLY 4 apples, 2 pears, 2 bananas and 1 pineapple, the system charges 500
+* When I check out EXACTLY 4 apples, 2 pears, 2 bananas and 1 pineapple, the system charges 500
 * All other offers and base prices remains in place
-* When I checkout 8 apples, 4 pears, 4 bananas and 2 pineapple, the system charges 1000
-* When I checkout 5 apples, 3 pears, 3 bananas and 2 pineapple, the system charges 860 (500+50+30+220+60)
-* When I checkout 7 apples, 2 pears, 2 bananas and 1 pineapple, the system charges 630 (500+130)
+* When I check out 8 apples, 4 pears, 4 bananas and 2 pineapple, the system charges 1000
+* When I check out 5 apples, 3 pears, 3 bananas and 2 pineapple, the system charges 860 (500+50+30+220+60)
+* When I check out 7 apples, 2 pears, 2 bananas and 1 pineapple, the system charges 630 (500+130)
 ```
 
 ## Go big
@@ -175,7 +175,7 @@ Let's add some payments features.
 
 ```markdown
 As a cashier,
-I want a display facing the customer (let's call it 'customer-display')
+I want a display facing the customer (let's call it 'customer-display'),
 so that (s)he can see what the total to be paid is
 ```
 
@@ -197,7 +197,7 @@ For the sake of simplicity, in this exercise the customer-display prints its mes
 
 ```markdown
 As a cashier, 
-I want the cash register to calculate and show me the change  
+I want the cash register to calculate and show me the change,
 so I can avoid silly mistakes with my customers during the payments 
 ```
 
@@ -224,7 +224,7 @@ Time to print some fiscal receipt.
 
 ```markdown
 As a cashier, 
-I want to print the fiscal receipt for sold items
+I want to print the fiscal receipt for sold items,
 so I can collect money from my customers 
 ```
 
@@ -316,7 +316,7 @@ check the accumulated balance on the card, etc.)
 
 ```markdown
 As a cashier, 
-I want to give a loyalty card that applies an additional 10% discount to some "fidelity products"
+I want to give a loyalty card that applies an additional 10% discount to some "fidelity products",
 so I can build up the loyalty of my customers
 ```
 
@@ -445,31 +445,17 @@ Now, the supermarket manager thinks that having more items and offers will boost
   * orange -> 45 cents
   * peach -> 40 cents
 
-<<<<<<< HEAD
 * implement new offers that lets us apply new pricing rules:
   * combo offers (e.g., buy 3 apple, and you will obtain an additional pear)
   * fidelity card offers
   * limited quantity offers (e.g., "you can buy this item at discount price, but max 3 pieces")
-=======
-* implement a new offers system that lets us apply new pricing rules:
-  * 3 x 2 offers (pay 2, get 3)
-  * combo offers (eg. buy 3 apple and you will obtain an additional pear)
   
-* implements the cash payment system
-* implements the credit card payment system
-  * the goverment stopped producing 1 and 2 cents coins; every bill/invoice has to be rounded to the nearest multiple of 5, even if paid with debet/credit card
-  * we have to manage the cancellation of a product, because it is damaged or the customer decides to return it (e.g. it costs too much and he didn't realize it)
+* payment system:
+  * the government stopped producing 1 and 2 cents coins; every bill/invoice has to be rounded 
+    to the nearest multiple of 5, even if paid with debit/credit card
+  * we have to manage the cancellation of a product, because it is damaged or the customer decides to return it 
+    (e.g. it costs too much, and (s)he didn't realize it)
 
-
-...[to be continued]...
-
-PS: feel free to propose next change request to implement! 😀
->>>>>>> bd85868 (Update README.md)
-
-* we have to manage the cancellation of a product, because it is damaged or the customer decides to return it (e.g., it costs too much and he didn't realize it)
-
-* the government stopped producing 1 and 2 cents coins:
-  * every bill/invoice has to be rounded to the nearest lower multiple of 5, even if paid with debit/credit card
 
 ...[to be continued]...
 
