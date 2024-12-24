@@ -1,5 +1,6 @@
-# KataSupermarket
-See here for the kata [README](../README.md).
+# Kata Supermarket - TypeScript Edition
+
+See [kata README](../README.md) for the exercise explanation.  
 
 ## Run tests
 ```bash

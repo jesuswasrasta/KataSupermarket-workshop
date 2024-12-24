@@ -448,7 +448,7 @@ Now, the supermarket manager thinks that having more items and offers will boost
 * implement new offers that lets us apply new pricing rules:
   * combo offers (e.g., buy 3 apple, and you will obtain an additional pear)
   * fidelity card offers
-  * limited quantity offers (e.g., "you can buy this item at discount price, but max 3 pieces")
+  * limited quantity offers (e.g., "you can buy this item at discount price, but max 3 pieces") 
   
 * payment system:
   * the government stopped producing 1 and 2 cents coins; every bill/invoice has to be rounded 
