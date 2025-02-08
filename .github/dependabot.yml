@@ -12,7 +12,7 @@ updates:
     schedule:
       interval: "monthly"
     # Disable version updates for npm dependencies
-    open-pull-requests-limit: 0
+    open-pull-requests-limit: 3
     target-branch: "component-updates"
 
   - package-ecosystem: "nuget"
